@@ -1,34 +1,37 @@
 package sorting;
 
 public class SelectionSort {
-	public void selectionSortRecursive(int[] data) {
-		selectionSortRecursive(data, 0);
-	}
 
-	private void selectionSortRecursive(int[] data, int start) {
-		if (start<data.length -1 ){
-			swap(data, start, findMinimumIndex(data, start));
-			selectionSortRecursive(data, start+1);
-		}
+	public static void main(String[] args) {
+		int i, j, least, temp;
+		int[] list = new int[] { 2, 5, 6, 1 };
+		int arrLenght = list.length;
 
-	}
+		// 마지막 숫자는 자동으로 정렬되기 때문에 (숫자 개수-1) 만큼 반복한다.
+		for (i = 0; i < arrLenght - 1; i++) {
+			least = i;
 
-	private int findMinimumIndex(int[] data, int start) {
-		int minPos = start;
+			// 최솟값을 탐색한다.
+			for (j = i + 1; j < arrLenght; j++) {
+				if (list[j] < list[least])
+					least = j;
+			}
 
-		for (int i = start +1;i<data.length;++i) {
-			if (data[i] < data[minPos]) {
-				minPos = i;
+			// 최솟값이 자기 자신이면 자료 이동을 하지 않는다.
+			if (i != least) {
+				swap(list[i], list[least]);
 			}
 		}
-		return minPos;
-	}
 
-	private void swap(int[] data, int index1, int index2) {
-		if(index1 != index2) {
-			int tmp = data[index1];
-			data[index1] = data[index2];
-			data[index2] = tmp;
-		}
 	}
+	
+	public static void swapArr(int a, int b, int[] arr) {
+		int temp;
+		temp = arr[a];
+		arr[a] = arr[b];
+		arr[b] = temp;
+	}
+	
+	
+
 }
